@@ -1,64 +1,55 @@
-import numpy as np
-import tensorflow as tf
-from tensorflow import keras
-import tkinter as tk
-from tkinter import messagebox
+import flet as ft
 
-# Задаем данные обучения
-# Входные данные - возраст, доход, количество детей
-# Выходные данные - категория клиента (0 - низкий, 1 - средний, 2 - высокий)
-X = np.array([[25, 50000, 0],
-              [40, 60000, 2],
-              [35, 80000, 1],
-              [50, 100000, 3]])
-y = np.array([0, 1, 2, 2])
+def main(page: ft.Page):
+    page.title = "Flet counter example"
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
 
-# Нормализуем входные данные
-X = X / np.amax(X, axis=0)
+    txt_number = ft.TextField(value="0", text_align=ft.TextAlign.RIGHT, width=100)
 
-# Создаем модель нейронной сети
-model = keras.Sequential([
-    keras.layers.Dense(4, input_shape=(3,), activation='sigmoid'),
-    keras.layers.Dense(3, activation='softmax')
-])
-model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    def minus_click(e):
+        txt_number.value = str(int(txt_number.value) - 1)
+        page.update()
 
-# Обучаем модель
-model.fit(X, y, epochs=10000, verbose=0)
+    def plus_click(e):
+        txt_number.value = str(int(txt_number.value) + 1)
+        page.update()
 
-# Создаем графический интерфейс с помощью библиотеки tkinter
-window = tk.Tk()
-window.title("Предсказание категории клиента")
+    page.add(
+        ft.Row(
+            [
+                ft.IconButton(ft.icons.REMOVE, on_click=minus_click),
+                txt_number,
+                ft.IconButton(ft.icons.ADD, on_click=plus_click),
+            ],
+            alignment=ft.MainAxisAlignment.CENTER,
+        )
+    )
 
-# Функция для обработки нажатия кнопки предсказания
-def predict_category():
-    age = float(entry_age.get())
-    income = float(entry_income.get())
-    children = float(entry_children.get())
-    test_data = np.array([[age, income, children]])
-    normalized_test_data = test_data / np.amax(X, axis=0)
-    predicted_category = model.predict_classes(normalized_test_data)[0]
-    class_predictictions = np.argmax(predicted_category, axis =- 1)
-    messagebox.showinfo("Результат", f"Предсказанная категория клиента: {predicted_category}")
+import flet as ft
 
-# Создаем элементы интерфейса
-label_age = tk.Label(window, text="Возраст:")
-label_age.pack()
-entry_age = tk.Entry(window)
-entry_age.pack()
+def main(page: ft.Page):
+    page.title = "Flet counter example"
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
 
-label_income = tk.Label(window, text="Доход:")
-label_income.pack()
-entry_income = tk.Entry(window)
-entry_income.pack()
+    txt_number = ft.TextField(value="0", text_align=ft.TextAlign.RIGHT, width=100)
 
-label_children = tk.Label(window, text="Количество детей:")
-label_children.pack()
-entry_children = tk.Entry(window)
-entry_children.pack()
+    def minus_click(e):
+        txt_number.value = str(int(txt_number.value) - 1)
+        page.update()
 
-button_predict = tk.Button(window, text="Предсказать", command=predict_category)
-button_predict.pack()
+    def plus_click(e):
+        txt_number.value = str(int(txt_number.value) + 1)
+        page.update()
 
-# Запускаем главный цикл окна
-window.mainloop()
+    page.add(
+        ft.Row(
+            [
+                ft.IconButton(ft.icons.REMOVE, on_click=minus_click),
+                txt_number,
+                ft.IconButton(ft.icons.ADD, on_click=plus_click),
+            ],
+            alignment=ft.MainAxisAlignment.CENTER,
+        )
+    )
+
+ft.app(target=main)
