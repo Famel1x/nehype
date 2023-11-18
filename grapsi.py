@@ -63,7 +63,7 @@ class graps:
         
 
 print("creating table")
-fig = px.line(hype, x=hype.index, y=hype.columns, title='Time Series with Range Slider and Selectors')
+fig = px.line(hype, x="РКО", y=hype.columns, title='Time Series with Range Slider and Selectors')
 print("saving")
 fig.write_image("Img/timeLine.png")
 print("saved")
