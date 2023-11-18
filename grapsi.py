@@ -8,7 +8,7 @@ dots_iter = 0
 gist_iter = 0
 
 hype = pd.read_csv("case/dataset/1._.csv", sep=";",encoding="1251")
-print(hype)
+# print(hype)
 
 class graps:
     def __init__(self) -> None:
@@ -60,12 +60,18 @@ class graps:
         print("succes")
         gist_iter = self.chng_parametr_gist_iter()
         return gist_iter-1
+    
+    def time_line(self, mouth):
+        ...
+
         
 
-print("creating table")
-fig = px.line(hype, x="РКО", y=hype.columns, title='Time Series with Range Slider and Selectors')
-print("saving")
-fig.write_image("Img/timeLine.png")
-print("saved")
-print("succes")
+    
+
+# print("creating table")
+# fig = px.line(hype, x=hype.columns, y=hype.columns, title='Time Series with Range Slider and Selectors')
+# print("saving")
+# fig.write_image("Img/timeLine.png")
+# print("saved")
+# print("succes")
 

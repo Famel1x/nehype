@@ -1,5 +1,6 @@
 import numpy as np
 
+
 # Задаем входные данные
 X = np.array([[0.01860, 0.01810, 0.01810, 0.01820],
               [0.01790, 0.01840, 0.01840, 0.01880],
@@ -35,7 +36,30 @@ epochs = 10000
 learning_rate = 0.04
 perceptron.train(X, y, epochs, learning_rate)
 
-# Пример предсказания количества пользователей
-test_data = np.array([[0.01590, 0.06590, 0.13410, 0.20610]])
-predicted_users = perceptron.predict(test_data)
-print("Предсказанное количество пользователей:", predicted_users)
+def pred_by_len(len):
+    next_m = 0
+    prediction = [  0.01860, 0.01810, 0.01810, 0.01820, 0.01800,
+                    0.01790, 0.01840, 0.01840, 0.01880, 0.01790,
+                    0.01590, 0.06590, 0.13410, 0.20610, 0.29100,
+                    0.35620, 0.42960, 0.52760, 0.61610, 0.70170,
+                    0.78520, 0.83960, 0.85110, 0.85460, 
+                    ]
+    for i in range(len):
+    # Пример предсказания количества пользователей
+        test_data = np.array([[0.7852, 0.8396, 0.8511, 0.8546]])
+        predicted_users = perceptron.predict(test_data)
+        print("Предсказанное количество пользователей:", predicted_users)
+        if i == 0:
+            next_m = predicted_users
+            prediction.append(predicted_users[0])
+        else:
+            new_test_data =[] 
+            new_test_data.append(test_data[0][1])
+            new_test_data.append(test_data[0][2])
+            new_test_data.append(test_data[0][3])
+            new_test_data.append[predicted_users[0]]
+            prediction.append(predicted_users[0])
+
+    return next_m, prediction
+
+pred_by_len(2)

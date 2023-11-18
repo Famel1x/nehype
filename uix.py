@@ -2,10 +2,9 @@ import flet as ft
 import grapsi as gr
 import os
 import shutil
+import Korrel as kr
 
 def main(page: ft.Page) -> ft.Page:
-    if os.path.exists("Img"):
-            shutil.rmtree("Img")
     """
     Главная функция Интерфейса.
     
@@ -19,22 +18,51 @@ def main(page: ft.Page) -> ft.Page:
             7) Закономерность наличия самоинкассации и использования эквайринга
     """
 
-    def hype(e):
-        hype_button.disabled = True
-        page.update()
-        i = gr.graps().main()
-        img.src = None
-        page.update()
-        dir = f"Img/dots{i}.png"
-        img.src = dir
-        hype_button.disabled = False
+    if os.path.exists("Img"):
+        shutil.rmtree("Img")
+
+    a = int((kr.pred_by_len(1)[0])*10000)   
+    ek_now =ft.Text(value=f"Пользуются эквайренгом сейчаc: {8546}")
+    ek_next =ft.Text(value=f"Пользуются эквайренгом в следующем месяце: {a}")
+    procent_life =ft.Text(value=f"Процент выживаемости клиентов: {a} %")
+
+    
+
+
+    def route_change(route):
+        page.views.clear()
+        page.views.append(
+            ft.View(
+                "/",
+                [
+                    ft.Row([
+                        ek_now, ft.Container(width=150),procent_life
+                    ]), 
+                    ek_next,
+                    
+                ],
+            )
+        )
+        if page.route == "/store":
+            page.views.append(
+                ft.View(
+                    "/store",
+                    [
+                        
+                        ft.ElevatedButton("Go Home", on_click=lambda _: page.go("/")),
+                    ],
+                )
+            )
         page.update()
 
-    img = ft.Image(src= "Img/fig1.png", width= 500)
-    hype_button = ft.ElevatedButton(text="Хайпануть", on_click=hype)
- 
-    page.add(img, hype_button)
-    page.update()
+    def view_pop(view):
+        page.views.pop()
+        top_view = page.views[-1]
+        page.go(top_view.route)
+
+    page.on_route_change = route_change
+    page.on_view_pop = view_pop
+    page.go(page.route)
 
 
 
