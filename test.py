@@ -40,7 +40,8 @@ def pie():
     # This dataframe has 244 lines, but 4 distinct values for `day`
 
     data_canada = px.data.gapminder().query("country == 'Canada'")
-    fig = px.bar(data, x='Name', y='Active', )
+    fig = px.bar(data, x='Name', y='Active', text_auto='.2s',
+            title="Default: various text sizes, positions and angles")
     
     return fig
 
