@@ -22,14 +22,27 @@ def without_3_mounth():
 def mouyh():
     data = pd.read_csv("ha/Книга13.csv", sep=";", encoding="1251")
     print(data)
-    a,b = Korrel.pred_by_len(3)
+    
+    a,b = Korrel.predict([[0.52760, 0.61610, 0.70170, 0.78520]])
+    b = pd.Series(b)
+    b =  b*10000
     print(b)
 
     df = px.data.stocks()
     fig = px.line(data, x='Date', y=b)
 
-
     return fig
 
-print(without_3_mounth())
+def pie():
+    data = pd.read_csv("ha/okved_eq.csv", sep=";", encoding="1251")
+    print(data)
+    
+    # This dataframe has 244 lines, but 4 distinct values for `day`
 
+    data_canada = px.data.gapminder().query("country == 'Canada'")
+    fig = px.bar(data, x='Name', y='Active', )
+    
+    return fig
+
+
+pie()

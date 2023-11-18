@@ -23,17 +23,33 @@ def main(page: ft.Page) -> ft.Page:
             7) Закономерность наличия самоинкассации и использования эквайринга
     """
     
-    graph = ft.Container(content=ft.Row([PlotlyChart(ts.without_3_mounth(), expand= True)]), width= 400)
+    graph_witgout_3 = ft.Container(content=ft.Row([PlotlyChart(ts.without_3_mounth(), expand= True)]), width= 600)
+    graph_with_3 = ft.Container(content=ft.Row([PlotlyChart(ts.mouyh(), expand= True)]), width= 1)
+    graph_pie = ft.Container(content=ft.Row([PlotlyChart(ts.pie(), expand= True)]), width= 600)
 
     # if os.path.exists("Img"):
     #     shutil.rmtree("Img")
 
-    # a = int((kr.pred_by_len(1)[0])*10000)   
+    def hypen(e):
+        if graph_with_3.width == 1:
+            graph_with_3.width = 600
+            graph_witgout_3.width = 1
+            print(")")
+        else:
+            graph_with_3.width = 1
+            graph_witgout_3.width = 600
+            print("()")
+        page.update()
+
+    first, all = (kr.predict([[0.52760, 0.61610, 0.70170, 0.78520]]))   
+    first= int(first*10000)
     a = 0
+
     ek_now =ft.Text(value=f"Пользуются эквайренгом сейчаc: {8546}")
-    ek_next =ft.Text(value=f"Пользуются эквайренгом в следующем месяце: {a}")
+    ek_next =ft.Text(value=f"Пользуются эквайренгом в следующем месяце: {first}")
     procent_life =ft.Text(value=f"Процент выживаемости клиентов: {a} %")
 
+    button = ft.ElevatedButton(text="hype", on_click=hypen)
 
 
     def route_change(route):
@@ -46,7 +62,9 @@ def main(page: ft.Page) -> ft.Page:
                         ek_now, ft.Container(width=150),procent_life
                     ]), 
                     ek_next,
-                    graph
+                    ft.Row([graph_with_3, graph_witgout_3, graph_pie]),
+                    button,
+                    
                 ],
             )
         )
