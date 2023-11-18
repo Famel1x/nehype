@@ -38,13 +38,21 @@ perceptron.train(X, y, epochs, learning_rate)
 
 # Пример предсказания количества пользователей
 def predict(arr1):
+    predictions = [ 0.01860, 0.01810, 0.01810, 0.01820, 0.01800, 
+                    0.01790, 0.01840, 0.01840, 0.01880, 0.01790, 
+                    0.01590, 0.06590, 0.13410, 0.20610, 0.29100, 
+                    0.35620, 0.42960, 0.52760, 0.61610, 0.70170,
+                    0.78520, 0.83960, 0.85110, 0.85460,
+                    
+                    ]
     test_data = np.array(arr1)
     for i in range(3):
         temp = perceptron.predict(test_data)
         test_data = test_data[0][1:]
         test_data = np.append(test_data, temp)
 
-    return temp
+    return temp, predictions
+
 
 
 
