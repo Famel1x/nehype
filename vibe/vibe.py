@@ -13,8 +13,8 @@ with open("vibe/name_bonkroti.txt", encoding='utf-8') as f:
 with open("vibe/name_norm.txt", encoding='utf-8') as f:
     norm = f.readlines()
 
-norm = Counter(norm).most_common()
-bank = Counter(bank).most_common()
+norm = Counter(norm).most_common(20)
+bank = Counter(bank).most_common(20)
 
 result = []
 
@@ -23,11 +23,13 @@ for i in range(len(norm)):
     for i in range(len(bank)):
         if a[0] in bank[i]:
             id= bank[i]
+            all = a[1]+id[1]
             proc = id[1]/(a[1]/100)
-            result.append([a[0].rstrip(), a[1], id[1], proc])
+            proc_from_all = id[1]/(all/100)
+            result.append([a[0].rstrip(),all, a[1], id[1], proc, proc_from_all])
 
 
-print(tabulate((result),headers=['Name', "Norm", "Bank", "Proc"], tablefmt="orgtbl"))
+print(tabulate((result),headers=['Name',"All", "Norm", "Bank", "Proc", "Proc_from_all"], tablefmt="orgtbl"))
 
 
 
