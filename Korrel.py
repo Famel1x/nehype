@@ -33,9 +33,20 @@ perceptron = Perceptron(input_size)
 # Обучаем персептрон
 epochs = 10000
 learning_rate = 0.04
-perceptron.train(X, y, epochs, learning_rate)
+perceptron.train(X, y, epochs, learning_rate) 
 
 # Пример предсказания количества пользователей
-test_data = np.array([[0.01590, 0.06590, 0.13410, 0.20610]])
-predicted_users = perceptron.predict(test_data)
-print("Предсказанное количество пользователей:", predicted_users)
+def predict(arr1):
+    test_data = np.array(arr1)
+    for i in range(3):
+        temp = perceptron.predict(test_data)
+        test_data = test_data[0][1:]
+        print (temp)
+        print(type(temp))
+        test_data = np.append(temp)
+
+    return temp
+
+
+
+print("Предсказанное количество пользователей:", predict([[0.01800, 0.01790, 0.29100, 0.70170]]))
