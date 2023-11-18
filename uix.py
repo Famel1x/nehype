@@ -18,15 +18,15 @@ def main(page: ft.Page) -> ft.Page:
             7) Закономерность наличия самоинкассации и использования эквайринга
     """
 
-    if os.path.exists("Img"):
-        shutil.rmtree("Img")
+    # if os.path.exists("Img"):
+    #     shutil.rmtree("Img")
 
     a = int((kr.pred_by_len(1)[0])*10000)   
     ek_now =ft.Text(value=f"Пользуются эквайренгом сейчаc: {8546}")
     ek_next =ft.Text(value=f"Пользуются эквайренгом в следующем месяце: {a}")
     procent_life =ft.Text(value=f"Процент выживаемости клиентов: {a} %")
 
-    
+    img_without = ft.Image(src= "Img/test_without.png", width=400)
 
 
     def route_change(route):
@@ -39,7 +39,7 @@ def main(page: ft.Page) -> ft.Page:
                         ek_now, ft.Container(width=150),procent_life
                     ]), 
                     ek_next,
-                    
+                    img_without
                 ],
             )
         )

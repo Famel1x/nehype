@@ -36,5 +36,5 @@ def mouyh():
     fig.write_image(dir)
     print("succes")
 
-
+without_3_mounth()
 mouyh()
