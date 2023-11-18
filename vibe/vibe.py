@@ -13,8 +13,8 @@ with open("vibe/name_bonkroti.txt", encoding='utf-8') as f:
 with open("vibe/name_norm.txt", encoding='utf-8') as f:
     norm = f.readlines()
 
-norm = Counter(norm).most_common(20)
-bank = Counter(bank).most_common(20)
+norm = Counter(norm).most_common()
+bank = Counter(bank).most_common()
 
 result = []
 
