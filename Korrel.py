@@ -57,7 +57,6 @@ def pred_by_len(len):
             new_test_data.append(test_data[0][1])
             new_test_data.append(test_data[0][2])
             new_test_data.append(test_data[0][3])
-            new_test_data.append[predicted_users[0]]
             prediction.append(predicted_users[0])
 
     return next_m, prediction
