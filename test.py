@@ -4,7 +4,7 @@ import pandas as pd
 data = pd.read_csv("ha/Книга1.csv", sep=";", encoding="1251")
 print(data)
 df = px.data.stocks()
-fig = px.line(data, x='Date', y="PCO")
+fig = px.line(data, x='Date', y="RKO")
 # print(df)
 
 
