@@ -3,6 +3,11 @@ import grapsi as gr
 import os
 import shutil
 import Korrel as kr
+import test as ts
+import plotly.express as px 
+from flet.plotly_chart import PlotlyChart
+
+
 
 def main(page: ft.Page) -> ft.Page:
     """
@@ -17,16 +22,18 @@ def main(page: ft.Page) -> ft.Page:
             6) Закономерность Расчетно-Кассовое Обслуживание и использования эквайринга
             7) Закономерность наличия самоинкассации и использования эквайринга
     """
+    
+    graph = ft.Container(content=ft.Row([PlotlyChart(ts.without_3_mounth(), expand= True)]), width= 400)
 
     # if os.path.exists("Img"):
     #     shutil.rmtree("Img")
 
-    a = int((kr.pred_by_len(1)[0])*10000)   
+    # a = int((kr.pred_by_len(1)[0])*10000)   
+    a = 0
     ek_now =ft.Text(value=f"Пользуются эквайренгом сейчаc: {8546}")
     ek_next =ft.Text(value=f"Пользуются эквайренгом в следующем месяце: {a}")
     procent_life =ft.Text(value=f"Процент выживаемости клиентов: {a} %")
 
-    img_without = ft.Image(src= "Img/test_without.png", width=400)
 
 
     def route_change(route):
@@ -39,7 +46,7 @@ def main(page: ft.Page) -> ft.Page:
                         ek_now, ft.Container(width=150),procent_life
                     ]), 
                     ek_next,
-                    img_without
+                    graph
                 ],
             )
         )
