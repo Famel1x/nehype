@@ -9,7 +9,7 @@ with open("vibe/vibe.txt", encoding='utf-8') as f:
 c = Counter(lines)
 
 
-for key, value in c.items():
-    print("{0}: {1}".format(key, value))
+# for key, value in c.items():
+#     print("{0}: {1}".format(key, value))
 print(c.most_common(3))
 
