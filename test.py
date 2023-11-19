@@ -13,7 +13,7 @@ def without_3_mounth():
     print(data)
 
     df = px.data.stocks()
-    fig = px.line(data, x='Date', y="EK", title="График пользователей Эквайринга без предсказания")
+    fig = px.line(data, x='Дата', y="Пользователи", title="График пользователей Эквайринга без предсказания")
 
     return  fig
 
@@ -29,7 +29,7 @@ def mouyh():
     print(b)
 
     df = px.data.stocks()
-    fig = px.line(data, x='Date', y=b, title="График пользователей Эквайринга с предсказанием")
+    fig = px.line(data, x='Дата', y=b, title="График пользователей Эквайринга с предсказанием")
 
     return fig
 
