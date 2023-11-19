@@ -20,6 +20,9 @@ def main(page: ft.Page) -> ft.Page:
     graph_with_3 = ft.Container(content=ft.Row([PlotlyChart(ts.mouyh(), expand= True)]), width= 1)
     graph_pie = ft.Container(content=ft.Row([PlotlyChart(ts.pie(), expand= True)]), width= 600)
     graph_line = ft.Container(content=ft.Row([PlotlyChart(ts.line_2(), expand= True)]), width= 600)
+    graph_line2 = ft.Container(content=ft.Row([PlotlyChart(ts.line_23(), expand= True)]), width= 1)
+    dol = ft.Container(content=ft.Row([PlotlyChart(ts.col(), expand= True)]), width= 600)
+
 
     # if os.path.exists("Img"):
     #     shutil.rmtree("Img")
@@ -28,10 +31,16 @@ def main(page: ft.Page) -> ft.Page:
         if graph_with_3.width == 1:
             graph_with_3.width = 600
             graph_witgout_3.width = 1
+            graph_line2.width = 600
+            graph_line.width = 1
+            button.text = "Без 3х месяцев"
             print(")")
         else:
             graph_with_3.width = 1
             graph_witgout_3.width = 600
+            graph_line.width = 600
+            graph_line2.width = 1
+            button.text = "С 3мя месяцами"
             print("()")
         page.update()
 
@@ -56,8 +65,10 @@ def main(page: ft.Page) -> ft.Page:
                         ek_now, ft.Container(width=150),procent_life
                     ]), 
                     ek_next,
-                    ft.Row([graph_with_3, graph_witgout_3, graph_pie]),
-                    button,graph_line
+                    ft.Row([graph_with_3, graph_witgout_3,   graph_pie]),
+                    button,
+                    ft.Row([ graph_line,  graph_line2, dol]),
+                    
                     
                 ],
             )

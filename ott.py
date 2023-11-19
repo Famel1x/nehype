@@ -1,19 +1,19 @@
 import numpy as np
 
 # Задаем входные данные
-X = np.array([[0.01860, 0.01810, 0.01810, 0.01820],
-              [0.01790, 0.01840, 0.01840, 0.01880],
-              [0.01590, 0.06590, 0.13410, 0.20610],
-              [0.35620, 0.42960, 0.52760, 0.61610]])
+X = np.array([[0, 0.06, 0.02, 0.02],
+              [0.02, 0.04, 0.03, 0.03],
+              [0.22, 0.12, 0.12, 0.16],
+              [0.27, 0.4, 0.33, 0.48]])
 
 # Задаем обучающие выходы
-y = np.array([0.01800, 0.01790, 0.29100, 0.70170])
+y = np.array([0.03, 0.01, 0.16, 0.7])
 
 # Создаем класс персептрона
 class Perceptron:
     def __init__(self, input_size):
-        self.weights = np.load('weights.npy', allow_pickle= True)
-        self.bias = np.load('bias.npy', allow_pickle= False)
+        self.weights = np.random.rand(input_size)
+        self.bias = np.random.rand()
 
     def predict(self, X):
         return np.dot(X, self.weights) + self.bias
@@ -61,5 +61,5 @@ def predict(arr1):
             predictions.append(temp)
     return firstmonth, predictions
 
-print("Предсказанное количество пользователей:", predict([[0.52760, 0.61610, 0.70170, 0.78520]]))
+print("Предсказанное количество пользователей:", predict([[0.48, 0.42, 0.93, 0.108]]))
 
