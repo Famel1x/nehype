@@ -9,7 +9,7 @@ if not os.path.exists("Img"):
 
 
 def without_3_mounth():
-    data = pd.read_csv("ha/Книга1_without_3.csv", sep=";", encoding="1251")
+    data = pd.read_csv("ha/Книга1_without_3.csv", sep=";", encoding="1251",title="")
     print(data)
 
     df = px.data.stocks()
@@ -40,7 +40,7 @@ def pie():
     # This dataframe has 244 lines, but 4 distinct values for `day`
 
     data_canada = px.data.gapminder().query("country == 'Canada'")
-    fig = px.bar(data, x='Name', y='Active', text_auto='.2s',
+    fig = px.bar(data, x='РћРљР’Р­Р”', y='РђРєС‚РёРІРЅС‹Рµ Р±РёР·РЅРµСЃС‹', text_auto='.2s',
             title="Default: various text sizes, positions and angles")
     
     return fig

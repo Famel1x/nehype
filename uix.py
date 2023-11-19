@@ -39,7 +39,7 @@ def main(page: ft.Page) -> ft.Page:
     first= int(first*10000)
     a = 0.8116*100
 
-    ek_now =ft.Text(value=f"Пользуются эквайренгом сейчаc: {8546}")
+    ek_now =ft.Text(value=f"Пользуются эквайренгом сейчаc:  {8546}")
     ek_next =ft.Text(value=f"Пользуются эквайренгом в следующем месяце: {first}")
     procent_life =ft.Text(value=f"Процент выживаемости клиентов: {a} %")
 
