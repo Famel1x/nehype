@@ -45,5 +45,15 @@ def pie():
     
     return fig
 
+def line_2():
+    data = pd.read_csv("ha/12cfd776f4e63d1b.csv", sep=";", encoding="1251")
+    print(data)
 
-pie()
+    df = px.data.gapminder().query("continent=='Oceania'")
+    print(df)
+
+    fig = px.line(data, x="Даты", y="Пользователи", color='Типы')
+    print(fig)
+    return fig
+
+line_2()

@@ -12,20 +12,14 @@ from flet.plotly_chart import PlotlyChart
 def main(page: ft.Page) -> ft.Page:
     """
     Главная функция Интерфейса.
-    
-        Что должно выводить?:
-            1) Гистограмма, показывающая количество пользователей по месяцам(Визуализация первого датасета(буквально))
-            2) Закономерность возраста и использования эквайринга
-            3) Закономерность вида деятельности и использования эквайринга
-            4) Закономерность типа организации и использования эквайринга
-            5) Закономерность наличия Устройств самообслуживания и использования эквайринга
-            6) Закономерность Расчетно-Кассовое Обслуживание и использования эквайринга
-            7) Закономерность наличия самоинкассации и использования эквайринга
     """
+    page.window_height = 1200
+    page.window_width = 1800
     
     graph_witgout_3 = ft.Container(content=ft.Row([PlotlyChart(ts.without_3_mounth(), expand= True)]), width= 600)
     graph_with_3 = ft.Container(content=ft.Row([PlotlyChart(ts.mouyh(), expand= True)]), width= 1)
     graph_pie = ft.Container(content=ft.Row([PlotlyChart(ts.pie(), expand= True)]), width= 600)
+    graph_line = ft.Container(content=ft.Row([PlotlyChart(ts.line_2(), expand= True)]), width= 600)
 
     # if os.path.exists("Img"):
     #     shutil.rmtree("Img")
@@ -43,7 +37,7 @@ def main(page: ft.Page) -> ft.Page:
 
     first, all = (kr.predict([[0.52760, 0.61610, 0.70170, 0.78520]]))   
     first= int(first*10000)
-    a = 0
+    a = 0.8116*100
 
     ek_now =ft.Text(value=f"Пользуются эквайренгом сейчаc: {8546}")
     ek_next =ft.Text(value=f"Пользуются эквайренгом в следующем месяце: {first}")
@@ -63,7 +57,7 @@ def main(page: ft.Page) -> ft.Page:
                     ]), 
                     ek_next,
                     ft.Row([graph_with_3, graph_witgout_3, graph_pie]),
-                    button,
+                    button,graph_line
                     
                 ],
             )
